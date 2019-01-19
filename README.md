@@ -1,11 +1,10 @@
+# Dresscode
+
 Dresscode is a form-object based validation framework that is completely independent from your models.
 
 **NOTE: Dresscode is not fully implemented yet**
 
-
-
-Example
-----------
+## Example
 
 ### Define your Form
 
@@ -35,6 +34,7 @@ Example
 
 
 ### Usage in controller
+
     public class ArticleController {
 
         // create article action
