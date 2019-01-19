@@ -11,7 +11,7 @@ Example
 
     public interface ArticleForm() {
 
-    	@Length(200)                                            // max length of 200
+        @Length(200)                                            // max length of 200
         @Required                                               // requred
         Field<String, TextValidator> getTitle();                // normal String input
 
@@ -37,32 +37,32 @@ Example
 ### Usage in controller
     public class ArticleController {
 
-    	// create article action
-    	public String createArticle(Request request) {
-    		// crete a new article form
-    		ArticleForm form = Dresscode.create(ArticleForm.class);
+        // create article action
+        public String createArticle(Request request) {
+            // crete a new article form
+            ArticleForm form = Dresscode.create(ArticleForm.class);
 
-    		// set category options
-    		form.getCategories().setOptions(Categories.getAll());
-    		// set the default selected category
-    		form.getCategories().setValue("default");
+            // set category options
+            form.getCategories().setOptions(Categories.getAll());
+            // set the default selected category
+            form.getCategories().setValue("default");
 
-    		return CoolTemplateEngine.render("createarticle.template", form);
-    	}
+            return CoolTemplateEngine.render("createarticle.template", form);
+        }
 
-    	// save article action
-    	public String saveArticle(Request request) {
-    		// create an article form filled from request parameters
-    		ArticleForm form = Dresscode.fromRequest(ArticleForm.class, request);
+        // save article action
+        public String saveArticle(Request request) {
+            // create an article form filled from request parameters
+            ArticleForm form = Dresscode.fromRequest(ArticleForm.class, request);
 
-    		if (form.isValid()) { // validate
-    			// create article entity from form (not scope of Dresscode)
-    			Article article = entityManager.fromForm(Article.class, form);
-    			article.save();
-    			return CoolTemplateEngine.render("success.template");
-    		} else {
-    			// form has errors. return to sender.
-    			return CoolTemplateEngine.render("createarticle.template", form);
-    		}
-    	}
+            if (form.isValid()) { // validate
+                // create article entity from form (not scope of Dresscode)
+                Article article = entityManager.fromForm(Article.class, form);
+                article.save();
+                return CoolTemplateEngine.render("success.template");
+            } else {
+                // form has errors. return to sender.
+                return CoolTemplateEngine.render("createarticle.template", form);
+            }
+        }
     }
